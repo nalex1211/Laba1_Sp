@@ -12,7 +12,7 @@ int main() {
     char currentWord[MAX_WORD_LENGTH + 1] = "";
     char *words[MAX_LINE_LENGTH / 2];
 
-    file = fopen("text.txt", "r");
+    file = fopen("text.txt", "r");          
 
     if (file == NULL) {
         perror("Failed to open file");
@@ -22,50 +22,50 @@ int main() {
     int wordCount = 0;
 
     while (fgets(line, sizeof(line), file)) {
-        char *token = strtok(line, " \t\n()[]{};:,.<>\"\'!?");
+        char *token = strtok(line, " \t\n()[]{};:,.<>\"\'!?");  
 
-        while (token != NULL) {
+        while (token != NULL) {               
             int j = 0;
             for (int i = 0; token[i]; i++) {
                 if (isalpha(token[i]) && j < MAX_WORD_LENGTH) {
-                    currentWord[j++] = token[i];
+                    currentWord[j++] = token[i];  
                 }
             }
-            currentWord[j] = '\0';
+            currentWord[j] = '\0';              
 
-            if (strlen(currentWord) > 0) {
+            if (strlen(currentWord) > 0) {       
                 if (strlen(currentWord) > strlen(longestWord)) {
-                    strcpy(longestWord, currentWord);
+                    strcpy(longestWord, currentWord);  
                 }
 
                 int found = 0;
                 for (int i = 0; i < wordCount; i++) {
                     if (strcmp(words[i], currentWord) == 0) {
-                        found = 1;
+                        found = 1;                    
                         break;
                     }
                 }
                 if (!found) {
-                    words[wordCount] = strdup(currentWord);
+                    words[wordCount] = strdup(currentWord);  
                     wordCount++;
                 }
             }
 
-            token = strtok(NULL, " \t\n()[]{};:,.<>\"\'!?");
+            token = strtok(NULL, " \t\n()[]{};:,.<>\"\'!?");  
         }
     }
 
-    fclose(file);
+    fclose(file);                            
 
-    printf("Longest word: %s\n", longestWord);
+    printf("Longest word: %s\n", longestWord);  
 
     printf("Words with the same length as the longest word:\n");
     for (int i = 0; i < wordCount; i++) {
         if (strlen(words[i]) == strlen(longestWord)) {
-            printf("%s\n", words[i]);
+            printf("%s\n", words[i]);         
         }
-        free(words[i]);
+        free(words[i]);                       
     }
 
-    return 0;
+    return 0;                                 
 }
