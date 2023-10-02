@@ -1,0 +1,3 @@
+Longest word: насолоджувалися
+Words with the same length as the longest word:
+насолоджувалися
